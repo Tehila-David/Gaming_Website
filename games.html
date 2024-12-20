@@ -1,0 +1,137 @@
+<!-- games.html -->
+<!DOCTYPE html>
+<html dir="rtl" lang="he">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GameZone | לוח המשחקים</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body class="games-page">
+    <nav class="game-nav">
+        <div class="nav-content">
+            <div class="logo-container">
+                <i class="fas fa-gamepad logo-icon"></i>
+                <span>GameZone</span>
+            </div>
+            
+            <div class="user-section">
+                <div class="user-info">
+                    <img src="/api/placeholder/32/32" alt="avatar" class="user-avatar">
+                    <span id="username-display">שם משתמש</span>
+                </div>
+                <div class="user-stats">
+                    <div class="stat">
+                        <i class="fas fa-star"></i>
+                        <span id="user-score">0</span>
+                    </div>
+                    <div class="stat">
+                        <i class="fas fa-trophy"></i>
+                        <span id="user-rank">מתחיל</span>
+                    </div>
+                </div>
+                <button id="logout" class="btn-logout">
+                    <i class="fas fa-sign-out-alt"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <main class="games-main">
+        <div class="games-grid">
+            <!-- משחק תנועה -->
+            <div class="game-card active" id="game-container-1">
+                <div class="game-header">
+                    <h2>משחק תנועה</h2>
+                    <div class="game-stats">
+                        <span class="difficulty">
+                            <i class="fas fa-signal"></i>
+                            קל
+                        </span>
+                        <span class="players-online">
+                            <i class="fas fa-users"></i>
+                            125 משחקים
+                        </span>
+                    </div>
+                </div>
+                <div class="game-preview">
+                    <img src="/api/placeholder/300/200" alt="תצוגה מקדימה למשחק תנועה">
+                    <button class="btn-play">
+                        <i class="fas fa-play"></i>
+                        שחק עכשיו
+                    </button>
+                </div>
+            </div>
+
+            <!-- משחק לוגי -->
+            <div class="game-card active" id="game-container-2">
+                <div class="game-header">
+                    <h2>משחק לוגי</h2>
+                    <div class="game-stats">
+                        <span class="difficulty">
+                            <i class="fas fa-signal"></i>
+                            בינוני
+                        </span>
+                        <span class="players-online">
+                            <i class="fas fa-users"></i>
+                            89 משחקים
+                        </span>
+                    </div>
+                </div>
+                <div class="game-preview">
+                    <img src="/api/placeholder/300/200" alt="תצוגה מקדימה למשחק לוגי">
+                    <button class="btn-play">
+                        <i class="fas fa-play"></i>
+                        שחק עכשיו
+                    </button>
+                </div>
+            </div>
+
+            <!-- משחקים בפיתוח -->
+            <div class="game-card coming-soon">
+                <div class="game-header">
+                    <h2>קרוב מאוד...</h2>
+                    <div class="game-stats">
+                        <span class="development">
+                            <i class="fas fa-code"></i>
+                            בפיתוח
+                        </span>
+                    </div>
+                </div>
+                <div class="game-preview blur">
+                    <img src="/api/placeholder/300/200" alt="משחק בפיתוח">
+                    <div class="coming-soon-overlay">
+                        <i class="fas fa-clock"></i>
+                        <span>בקרוב...</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="game-card coming-soon">
+                <div class="game-header">
+                    <h2>חדש בדרך</h2>
+                    <div class="game-stats">
+                        <span class="development">
+                            <i class="fas fa-code"></i>
+                            בפיתוח
+                        </span>
+                    </div>
+                </div>
+                <div class="game-preview blur">
+                    <img src="/api/placeholder/300/200" alt="משחק בפיתוח">
+                    <div class="coming-soon-overlay">
+                        <i class="fas fa-clock"></i>
+                        <span>בקרוב...</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="utils.js"></script>
+    <script src="game1.js"></script>
+    <script src="game2.js"></script>
+    <script src="main.js"></script>
+</body>
+</html>
