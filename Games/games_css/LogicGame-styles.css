@@ -1,0 +1,301 @@
+/* game2-styles.css */
+/* 
+.game-container {
+    max-width: 600px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background: rgba(45, 55, 72, 0.95);
+    border-radius: 1rem;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+}
+
+.game-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+    padding: 1rem;
+    background: rgba(31, 41, 55, 0.5);
+    border-radius: 0.5rem;
+}
+
+.level-indicator, .score-container {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 1.2rem;
+    color: var(--text-primary);
+}
+
+.game-board {
+    aspect-ratio: 1;
+    padding: 1rem;
+    background: rgba(31, 41, 55, 0.3);
+    border-radius: 1rem;
+    margin-bottom: 2rem;
+}
+
+.buttons-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    height: 100%;
+}
+
+.game-button {
+    position: relative;
+    border-radius: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    overflow: hidden;
+}
+
+.game-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.1);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.game-button:hover::before {
+    opacity: 1;
+}
+
+.game-button i {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 2rem;
+    color: rgba(255, 255, 255, 0.2);
+    transition: all 0.3s ease;
+}
+
+.game-button.active {
+    transform: scale(0.95);
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+}
+
+#red { background: #EF4444; }
+#green { background: #10B981; }
+#blue { background: #3B82F6; }
+#yellow { background: #F59E0B; }
+
+.game-controls {
+    text-align: center;
+}
+
+.btn-start {
+    padding: 0.75rem 2rem;
+    font-size: 1.1rem;
+    background: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 2rem;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: all 0.3s ease;
+}
+
+.btn-start:hover {
+    background: var(--primary-hover);
+    transform: translateY(-2px);
+}
+
+.game-status {
+    margin-top: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+}
+
+.status-message {
+    font-size: 1.1rem;
+    color: var(--text-secondary);
+}
+
+.best-score {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--primary-color);
+    font-weight: bold;
+}
+
+@keyframes buttonPress {
+    0% { transform: scale(1); }
+    50% { transform: scale(0.95); }
+    100% { transform: scale(1); }
+}
+
+.game-button.pressed {
+    animation: buttonPress 0.3s ease;
+}
+
+@media (max-width: 768px) {
+    .game-container {
+        margin: 1rem;
+        padding: 1rem;
+    }
+} */
+
+.game-container {
+    max-width: 600px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background: rgba(45, 55, 72, 0.95);
+    border-radius: 1rem;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+
+}
+
+.game-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+    padding: 1rem;
+    background: rgba(31, 41, 55, 0.5);
+    border-radius: 0.5rem;
+}
+
+
+
+.game-board {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    align-items: center;
+    margin: 20px 0;
+}
+
+.buttons-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 20px;
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto; /* מרכז את הגריד במרכז */
+    justify-items: center; /* ממקם את כל התוכן במרכז בהיבט האופקי */
+    align-items: center; /* ממקם את כל התוכן במרכז בהיבט האנכי */
+}
+
+.game-button {
+    width: 80px;
+    height: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    font-size: 40px;
+    color: white;
+}
+
+/* צבעים מותאמים לכל רשת חברתית */
+#facebook {
+    background-color: #3b5998; /* כחול של פייסבוק */
+}
+
+#twitter {
+    background-color: #00acee; /* כחול של טוויטר */
+}
+
+#instagram {
+    background-color: #e4405f; /* ורוד של אינסטגרם */
+}
+
+#youtube {
+    background-color: #ff0000; /* אדום של יוטיוב */
+}
+
+#linkedin {
+    background-color: #0077b5; /* כחול של לינקדאין */
+}
+
+#snapchat {
+    background-color: #fffb00d7; /* צהוב של סנאפצ'אט */
+}
+
+#whatsapp {
+    background-color: #25d366; /* ירוק של וואטסאפ */
+}
+
+#pinterest {
+    background-color: #e60023; /* אדום של פינטרסט */
+}
+
+#tiktok {
+    background-color: #000000; /* שחור של טיקטוק */
+}
+
+/* אפקטים כאשר הכפתור נמצא במצב "active" או כשעוברים עליו עם העכבר */
+.game-button:hover {
+    transform: scale(1.1); /* הגדלה קטנה של הכפתור */
+    opacity: 0.8;
+}
+
+/* כאשר הכפתור פעיל, לדוגמה בעת חזרת השחקן על הרצף */
+.game-button.active {
+    opacity: 1;
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.6); /* הוספת הילה */
+}
+.game-status {
+    margin-top: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+}
+
+.status-message {
+    font-size: 1.1rem;
+    color: var(--text-secondary);
+}
+
+.best-score {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--primary-color);
+    font-weight: bold;
+}
+.game-controls {
+    text-align: center;
+}
+
+.btn-start {
+    padding: 0.75rem 2rem;
+    font-size: 1.1rem;
+    background: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 2rem;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: all 0.3s ease;
+}
+
+.btn-start:hover {
+    background: var(--primary-hover);
+    transform: translateY(-2px);
+}
+
+.game-status {
+    margin-top: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+}

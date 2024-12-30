@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="he">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>משחק זיכרון ולוגיקה</title>
+    <link rel="stylesheet" href="..\games_css\LogicGame-styles.css">
+    <link rel="stylesheet" href="..\..\Main\main_css\styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <nav class="game-nav">
+        <div class="nav-content">
+            <div class="logo-container">
+                <i class="fas fa-gamepad logo-icon"></i>
+                <span>GameZone</span>
+            </div>
+            
+            <div class="user-section">
+                <div class="user-info">
+                    <i class="fa-solid fa-user"></i>
+                    <span id="username-display">שם משתמש</span>
+                </div>
+                <div class="user-stats">
+                    <div class="stat">
+                        <i class="fas fa-star"></i>
+                        <span id="user-score">0</span>
+                    </div>
+                    <div class="stat">
+                        <i class="fas fa-trophy"></i>
+                        <span id="user-rank">מתחיל</span>
+                    </div>
+                </div>
+                <button id="logout" class="btn-logout">
+                    <i class="fa-solid fa-house"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <div class="game-container">
+        <div class="game-header">
+            <div class="level-indicator">
+                <i class="fas fa-signal"></i>
+                <span>שלב: <span id="level">1</span></span>
+            </div>
+            <div class="score-container">
+                <i class="fas fa-star"></i>
+                <span>ניקוד: <span id="score">0</span></span>
+            </div>
+        </div>
+
+        <!-- <div id="game-board" class="game-board">
+            <div class="buttons-grid">
+                <div id="red" class="game-button" data-color="red">
+                    <i class="fas fa-music"></i>
+                </div>
+                <div id="green" class="game-button" data-color="green">
+                    <i class="fas fa-music"></i>
+                </div>
+                <div id="blue" class="game-button" data-color="blue">
+                    <i class="fas fa-music"></i>
+                </div>
+                <div id="yellow" class="game-button" data-color="yellow">
+                    <i class="fas fa-music"></i>
+                </div>
+            </div>
+        </div> -->
+        <div id="game-board" class="game-board">
+            <div class="buttons-grid">
+                <div id="facebook" class="game-button" data-color="facebook">
+                    <i class="fab fa-facebook"></i>
+                </div>
+                <div id="twitter" class="game-button" data-color="twitter">
+                    <i class="fab fa-twitter"></i>
+                </div>
+                <div id="instagram" class="game-button" data-color="instagram">
+                    <i class="fab fa-instagram"></i>
+                </div>
+                <div id="youtube" class="game-button" data-color="youtube">
+                    <i class="fab fa-youtube"></i>
+                </div>
+                <div id="linkedin" class="game-button" data-color="linkedin">
+                    <i class="fab fa-linkedin"></i>
+                </div>
+                <div id="snapchat" class="game-button" data-color="snapchat">
+                    <i class="fab fa-snapchat"></i>
+                </div>
+                <div id="whatsapp" class="game-button" data-color="whatsapp">
+                    <i class="fab fa-whatsapp"></i>
+                </div>
+                <div id="pinterest" class="game-button" data-color="pinterest">
+                    <i class="fab fa-pinterest"></i>
+                </div>
+                <div id="tiktok" class="game-button" data-color="tiktok">
+                    <i class="fab fa-tiktok"></i>
+                </div>
+            </div>
+        </div>
+
+        <div class="game-controls">
+            <button id="start-game" class="btn-start">
+                <i class="fas fa-play"></i>
+                התחל משחק
+            </button>
+            <div class="game-status">
+                <div id="status-message" class="status-message"></div>
+                <div class="best-score">
+                    <i class="fas fa-trophy"></i>
+                    שיא: <span id="best-score">0</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="..\..\Main\main_js\utils.js"></script>
+    <script src="..\games_js\LogicGame_class.js"></script>
+    <script src="..\games_js\logicGame_events.js"></script>
+</body>
+</html>
+

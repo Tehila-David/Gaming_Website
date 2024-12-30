@@ -1,14 +1,14 @@
-<!-- games.html -->
+<!-- game_board.html -->
 <!DOCTYPE html>
 <html dir="rtl" lang="he">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GameZone | לוח המשחקים</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="../main_css/styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
-<body class="games-page">
+<body class="game_board-page">
     <nav class="game-nav">
         <div class="nav-content">
             <div class="logo-container">
@@ -18,7 +18,7 @@
             
             <div class="user-section">
                 <div class="user-info">
-                    <img src="/api/placeholder/32/32" alt="avatar" class="user-avatar">
+                    <i class="fa-solid fa-user"></i>
                     <span id="username-display">שם משתמש</span>
                 </div>
                 <div class="user-stats">
@@ -41,7 +41,7 @@
     <main class="games-main">
         <div class="games-grid">
             <!-- משחק תנועה -->
-            <div class="game-card active" id="game-container-1">
+            <div class="game-card move" id="game-container-1">
                 <div class="game-header">
                     <h2>משחק תנועה</h2>
                     <div class="game-stats">
@@ -65,7 +65,7 @@
             </div>
 
             <!-- משחק לוגי -->
-            <div class="game-card active" id="game-container-2">
+            <div class="game-card logic" id="game-container-2">
                 <div class="game-header">
                     <h2>משחק לוגי</h2>
                     <div class="game-stats">
@@ -129,9 +129,7 @@
         </div>
     </main>
 
-    <script src="utils.js"></script>
-    <script src="game1.js"></script>
-    <script src="game2.js"></script>
-    <script src="main.js"></script>
+    <script src="../main_js/main.js"></script>
+    <script src="../main_js/utils.js"></script>
 </body>
 </html>

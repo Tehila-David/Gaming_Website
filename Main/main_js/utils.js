@@ -1,3 +1,4 @@
+
 class UserManager {
     constructor() {
         // בדיקה והתחלה של מערך המשתמשים
@@ -115,6 +116,7 @@ class UserManager {
     }
 }
 
+
 // ניהול הודעות Toast
 class ToastManager {
     static show(message, type = 'success', duration = 3000) {
@@ -133,66 +135,3 @@ class ToastManager {
         }, duration);
     }
 }
-
-// Event Listeners
-document.addEventListener('DOMContentLoaded', () => {
-    const userManager = new UserManager();
-
-    // טיפול בטופס התחברות
-    const loginForm = document.getElementById('login-form');
-    if (loginForm) {
-        loginForm.addEventListener('submit', async (e) => {
-            e.preventDefault();
-            
-            try {
-                const username = document.getElementById('username').value;
-                const password = document.getElementById('password').value;
-                
-                const user = userManager.login(username, password);
-                ToastManager.show('התחברת בהצלחה!', 'success');
-                
-                setTimeout(() => {
-                    window.location.href = 'games.html';
-                }, 1000);
-            } catch (error) {
-                ToastManager.show(error.message, 'error');
-            }
-        });
-    }
-
-    // טיפול בטופס הרשמה
-    const registerForm = document.getElementById('register-form');
-    if (registerForm) {
-        registerForm.addEventListener('submit', async (e) => {
-            e.preventDefault();
-            
-            try {
-                const username = document.getElementById('reg-username').value;
-                const password = document.getElementById('reg-password').value;
-                const email = document.getElementById('reg-email').value;
-                
-                const user = userManager.register(username, password, email);
-                ToastManager.show('ההרשמה בוצעה בהצלחה!', 'success');
-                
-                // הפניה לדף המשחקים לאחר הרשמה מוצלחת
-                setTimeout(() => {
-                    window.location.href = 'games.html';
-                }, 1000);
-            } catch (error) {
-                ToastManager.show(error.message, 'error');
-            }
-        });
-    }
-
-    // בדיקת התחברות בדף המשחקים
-    if (window.location.pathname.includes('games.html')) {
-        if (!userManager.isLoggedIn()) {
-            window.location.href = 'index.html';
-        } else {
-            const user = userManager.getCurrentUser();
-            if (document.getElementById('username-display')) {
-                document.getElementById('username-display').textContent = user.username;
-            }
-        }
-    }
-});
