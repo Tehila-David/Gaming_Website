@@ -3,16 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>משחק תפיסת בועות</title>
-    <link rel="stylesheet" href="../games_css/MoveGame-styles.css">
-    <link rel="stylesheet" href="../../Main/main_css/styles.css">
+    <title>משחק פסנתר וזיכרון</title>
+    <link rel="stylesheet" href="..\games_css\LogicGame-styles_1.css">
+    <link rel="stylesheet" href="..\..\Main\main_css\styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
     <nav class="game-nav">
         <div class="nav-content">
             <div class="logo-container">
-                <i class="fas fa-gamepad logo-icon"></i>
+                <i class="fas fa-music logo-icon"></i>
                 <span>GameZone</span>
             </div>
             
@@ -50,7 +50,29 @@
             </div>
         </div>
 
-        <div id="game-board"></div>
+        <div id="game-board" class="game-board">
+            <div class="song-info">
+                <span id="current-song">שיר: ללא</span>
+            </div>
+            <div class="piano-container">
+                <div class="piano-keys">
+                    <!-- הקבוצה הראשונה -->
+                    <div class="key white" data-note="C4" data-hebrew="דו"></div>
+                    <div class="key black" data-note="C#4" data-hebrew="דו#"></div>
+                    <div class="key white" data-note="D4" data-hebrew="רה"></div>
+                    <div class="key black" data-note="D#4" data-hebrew="רה#"></div>
+                    <div class="key white" data-note="E4" data-hebrew="מי"></div>
+                    <!-- אין מקש שחור בין E ו-F -->
+                    <div class="key white" data-note="F4" data-hebrew="פה"></div>
+                    <div class="key black" data-note="F#4" data-hebrew="פה#"></div>
+                    <div class="key white" data-note="G4" data-hebrew="סול"></div>
+                    <div class="key black" data-note="G#4" data-hebrew="סול#"></div>
+                    <div class="key white" data-note="A4" data-hebrew="לה"></div>
+                    <div class="key black" data-note="A#4" data-hebrew="לה#"></div>
+                    <div class="key white" data-note="B4" data-hebrew="סי"></div>
+                </div>
+            </div>
+        </div>
 
         <div class="game-controls">
             <button id="start-game" class="btn-start">
@@ -58,7 +80,7 @@
                 התחל משחק
             </button>
             <div class="game-status">
-                <div id="status-message" class="status-message"></div>
+                <div id="status" class="status-message">לחץ על "התחל משחק" כדי להתחיל</div>
                 <div class="best-score">
                     <i class="fas fa-trophy"></i>
                     שיא: <span id="best-score">0</span>
@@ -66,9 +88,8 @@
             </div>
         </div>
     </div>
-
-    <script src="../../Main/main_js/utils.js"></script>
-    <script src="../games_js/MoveGame_class.js"></script>
-    <script src="../games_js/MoveGame_events.js"></script>
+    <script src="..\..\Main\main_js\utils.js"></script>
+    <script src="..\games_js\LogicGame_1_class.js"></script>
+    <script src="..\games_js\LogicGame_1_events.js"></script>
 </body>
 </html>

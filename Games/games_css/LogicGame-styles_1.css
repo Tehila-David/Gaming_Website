@@ -1,0 +1,240 @@
+/* Piano Game Specific Styles */
+
+.game-controls {
+    text-align: center;
+    margin-top: 2rem; /* הוספת רווח של 2rem מלמעלה */
+} 
+
+
+.game-container {
+    max-width: 800px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background: rgba(45, 55, 72, 0.95);
+    border-radius: 1rem;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+
+}
+
+.level-indicator, .score-container {
+    font-size: 1.2rem;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+.game-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+    padding: 1rem;
+    background: rgba(31, 41, 55, 0.5);
+    border-radius: 0.5rem;
+}
+.game-board {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+    padding: 2rem;
+    background: linear-gradient(145deg, #2b2631, #a9a1a1);
+    border-radius: 3rem;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+.song-info {
+    font-size: 1.5rem;
+    color: #fff;
+    margin-bottom: 1rem;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.piano-container {
+    width: 100%;
+    max-width: 900px;
+    background: linear-gradient(to bottom, #272727, #1a1a1a);
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 -6px 0 #333,
+                0 8px 20px rgba(0, 0, 0, 0.4),
+                inset 0 2px 0 rgba(255, 255, 255, 0.1);
+}
+
+.piano-keys {
+    display: flex;
+    position: relative;
+    height: 240px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.key {
+    position: relative;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    padding-bottom: 1.5rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.1s ease;
+    user-select: none;
+}
+
+.white {
+    flex: 1;
+    background: linear-gradient(to bottom, #fff 0%, #eee 100%);
+    border: 1px solid #ccc;
+    border-radius: 0 0 12px 12px;
+    color: #333;
+    box-shadow: inset 0 1px 0px rgba(255,255,255,1),
+                inset 0 -1px 0px rgba(0,0,0,0.1),
+                0 4px 0 rgba(0,0,0,0.1);
+    z-index: 1;
+}
+
+.black {
+    position: absolute;
+    width: 32px;
+    height: 160px;
+    background: linear-gradient(45deg, #000, #222);
+    border-radius: 0 0 4px 4px;
+    z-index: 2;
+    color: #fff;
+    font-size: 0.8em;
+    box-shadow: inset 0 -1px 0px rgba(255,255,255,0.1),
+                inset 0 -4px 0px rgba(0,0,0,0.1),
+                0 4px 8px rgba(0,0,0,0.4);
+}
+
+.white.active, .white:active {
+    background: linear-gradient(to bottom, #f0f0f0 0%, #e0e0e0 100%);
+    transform: translateY(4px);
+    box-shadow: inset 0 1px 0px rgba(255,255,255,1),
+                inset 0 -1px 0px rgba(0,0,0,0.1);
+}
+
+.black.active, .black:active {
+    background: linear-gradient(45deg, #111, #333);
+    transform: translateY(4px);
+    box-shadow: inset 0 -1px 0px rgba(255,255,255,0.1),
+                inset 0 -1px 0px rgba(0,0,0,0.1);
+}
+
+/* Specific Black Key Positioning */
+.key[data-note="C#4"] { left: 14%; }  /* אחרי דו */
+.key[data-note="D#4"] { left:27%; }  /* אחרי רה */
+/* אין מקש שחור אחרי מי */
+.key[data-note="F#4"] { left: 54%; }  /* אחרי פה */
+.key[data-note="G#4"] { left: 67.5%; }  /* אחרי סול */
+.key[data-note="A#4"] { left: 81%; }  /* אחרי לה */
+/* אין מקש שחור אחרי סי */
+
+/* Hebrew Note Labels */
+.white::after {
+    content: attr(data-hebrew);
+    position: absolute;
+    bottom: 10px;
+    font-size: 1.1rem;
+    color: #444;
+    font-weight: 600;
+}
+
+.black::after {
+    content: attr(data-hebrew);
+    position: absolute;
+    bottom: 10px;
+    font-size: 0.9rem;
+    color: #fff;
+    opacity: 0.8;
+}
+
+/* Key Press Animation */
+@keyframes keyPress {
+    0% { transform: translateY(0); }
+    50% { transform: translateY(4px); }
+    100% { transform: translateY(0); }
+}
+
+.key.pressed {
+    animation: keyPress 0.15s ease;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .piano-keys {
+        height: 200px;
+    }
+    
+    .black {
+        height: 130px;
+        width: 28px;
+    }
+    
+    .white::after,
+    .black::after {
+        font-size: 0.9rem;
+    }
+}
+
+/* אפקטים כאשר הכפתור נמצא במצב "active" או כשעוברים עליו עם העכבר */
+.game-button:hover {
+    transform: scale(1.1); /* הגדלה קטנה של הכפתור */
+    opacity: 0.8;
+}
+
+/* כאשר הכפתור פעיל, לדוגמה בעת חזרת השחקן על הרצף */
+.game-button.active {
+    opacity: 1;
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.6); /* הוספת הילה */
+}
+.game-status {
+    margin-top: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+}
+
+.status-message {
+    font-size: 1.1rem;
+    color: var(--text-secondary);
+}
+
+.best-score {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--primary-color);
+    font-weight: bold;
+}
+.game-controls {
+    text-align: center;
+}
+
+.btn-start {
+    padding: 0.75rem 2rem;
+    font-size: 1.1rem;
+    background: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 2rem;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: all 0.3s ease;
+}
+
+.btn-start:hover {
+    background: var(--primary-hover);
+    transform: translateY(-2px);
+}
+
+.game-status {
+    margin-top: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+}

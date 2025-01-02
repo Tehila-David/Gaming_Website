@@ -127,7 +127,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (playButton) {
                     playButton.addEventListener('click', () => {
                         console.log('Button clicked for Logic Game, redirecting...');
-                        window.location.href = '../../Games/games_html/LogicGame.html'; // הפנייה למשחק לוגי
+                        window.location.href = '../../Games/games_html/LogicGame_1.html'; // הפנייה למשחק לוגי
                     });
                 } else {
                     console.error('Play button not found in Logic Game Card.');
