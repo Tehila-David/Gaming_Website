@@ -49,7 +49,7 @@ class UserManager {
         }
 
         // עדכון זמן התחברות אחרון
-        user.lastLogin = new Date().toISOString();
+        user.lastLogin = new Date().toLocaleString();
         this.saveUsers(users);
 
         // שמירת המשתמש המחובר
@@ -131,7 +131,7 @@ class ToastManager {
         
         setTimeout(() => {
             toast.classList.remove('show');
-            setTimeout(() => toast.remove(), 300);
+            setTimeout(() => toast.remove(), 600);
         }, duration);
     }
 }

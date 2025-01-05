@@ -32,7 +32,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 logoutButton.addEventListener('click', () => {
                     ToastManager.show('מבוצעת יציאה', 'success');
                     setTimeout(() => {
-                        window.location.href = '/Main/main_html/game_board.html';
+                        window.location.href = '../../Main/main_html/game_board.html';
                     }, 1000);
 
                 });
