@@ -62,8 +62,11 @@ class PianoGame {
     }
 
     setupEventListeners() {
-        document.getElementById('start-game').addEventListener('click', () => {
+        const startGameButton = document.getElementById('start-game');
+
+        startGameButton.addEventListener('click', () => {
             this.startGame();
+            startGameButton.disabled = true; 
         });
 
         const keys = document.querySelectorAll('.key');
@@ -207,6 +210,9 @@ class PianoGame {
         this.isPlaying = false;
         this.updateStatus('המשחק נגמר! לחץ על התחל כדי לשחק שוב');
         this.saveBestScore();
+
+        const startGameButton = document.getElementById('start-game');
+        startGameButton.disabled = false;
     }
 
     updateScore() {

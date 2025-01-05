@@ -1,5 +1,6 @@
 
 class BubbleGame {
+    
     constructor(containerId) {
         this.gameBoard = document.getElementById(containerId);
         this.score = 0;
@@ -10,7 +11,10 @@ class BubbleGame {
         this.gameLoop = null;
         this.maxBubbles = 5;
         this.bubbleSpeed = 2;
+        this.missedBubbles = 0; // ספירת בועות שלא פוצצו
+        this.maxMissedBubbles = 5; // מספר פסילות מותר
     }
+    
 
     init() {
         this.loadBestScore();
@@ -72,11 +76,20 @@ class BubbleGame {
         ];
         return icons[Math.floor(Math.random() * icons.length)];
     }
-    
+
     setupEventListeners() {
         const startButton = document.getElementById('start-game');
         if (startButton) {
-            startButton.addEventListener('click', () => this.startGame());
+            startButton.addEventListener('click', () => {
+                // להפוך את הכפתור ללא זמין
+                startButton.disabled = true;
+    
+                // לשנות את סגנון הכפתור (אם יש צורך בהתאמות ויזואליות נוספות)
+                //startButton.classList.add('disabled');
+    
+                // להתחיל את המשחק
+                this.startGame();
+            });
         }
     }
 
@@ -84,38 +97,52 @@ class BubbleGame {
         const bubble = document.createElement('div');
         bubble.className = 'bubble';
         
-        // הקטנת הגודל המינימלי והמקסימלי של הבועות
-        const size =  50;
+        // הגדרת צבע רנדומלי לבועה
+        const randomColor = this.getRandomColor();
+        bubble.style.background = `radial-gradient(circle, ${randomColor}, #000)`;
+    
+        // המשך קוד יצירת הבועה
+        const size = 50;
         bubble.style.width = `${size}px`;
         bubble.style.height = `${size}px`;
-        
-        // וידוא שהבועה מתחילה מחוץ למסך בתחתית
+    
         const startX = Math.random() * (this.gameBoard.offsetWidth - size);
         bubble.style.left = `${startX}px`;
-        bubble.style.top = `${this.gameBoard.offsetHeight}px`;  // שינוי כאן
-        
-        // הוספת אייקון בתוך הבועה
+        bubble.style.top = `${this.gameBoard.offsetHeight}px`;
+    
         const icon = document.createElement('i');
         icon.className = this.getRandomIcon();
         bubble.appendChild(icon);
-        
-        // הוספת הבועה ל-DOM
+    
         this.gameBoard.appendChild(bubble);
-        
+    
         const bubbleObj = {
             element: bubble,
             speed: this.bubbleSpeed * (Math.random() * 0.5 + 0.75),
             points: Math.floor((60 - size) / 2) + 10
         };
-        
+    
         bubble.addEventListener('click', () => {
             if (this.isPlaying) {
                 this.popBubble(bubbleObj);
             }
         });
-        
+    
         this.bubbles.push(bubbleObj);
     }
+
+    getRandomColor() {
+        const colors = [
+            '#FF5733', // אדום-כתום
+            '#33FF57', // ירוק-בהיר
+            '#3357FF', // כחול
+            '#FFC300', // צהוב
+            '#FF33A1', // ורוד
+            '#8E44AD', // סגול כהה
+        ];
+        return colors[Math.floor(Math.random() * colors.length)];
+    }
+    
 
     updateBubbles() {
         for (let i = this.bubbles.length - 1; i >= 0; i--) {
@@ -123,26 +150,35 @@ class BubbleGame {
             const currentTop = parseFloat(bubble.element.style.top) || this.gameBoard.offsetHeight;
             const newTop = currentTop - bubble.speed;
             bubble.element.style.top = `${newTop}px`;
-            
-            if (newTop < -100) {
+    
+            if (newTop < -100) { // אם הבועה עברה את המסך
                 if (bubble.element.parentNode) {
                     bubble.element.parentNode.removeChild(bubble.element);
                 }
                 this.bubbles.splice(i, 1);
-                this.checkGameOver();
+                this.missedBubbles++; // עדכון כמות הבועות שלא פוצצו
+                this.checkGameOver(); // בדיקה אם נגמר המשחק
             }
+        }
+    }
+    
+    checkGameOver() {
+        if (this.bubbles.length >= this.maxBubbles || this.missedBubbles >= this.maxMissedBubbles) {
+            this.gameOver();
         }
     }
 
     startGame() {
+        clearInterval(this.gameLoop); // עצור לולאות קודמות
         this.gameBoard.innerHTML = '';
         this.bubbles = [];
         
         this.score = 0;
         this.level = 1;
         this.isPlaying = true;
-        this.maxBubbles = 16;
+        this.maxBubbles = 5; // מספר התחלתי קטן של בועות
         this.bubbleSpeed = 2;
+        this.missedBubbles = 0; // איפוס פסילות
         
         this.updateStatus('המשחק התחיל! לחץ על הבועות');
         this.updateScore();
@@ -168,6 +204,7 @@ class BubbleGame {
     popBubble(bubble) {
         if (!bubble.element.classList.contains('popped')) {
             bubble.element.classList.add('popped');
+            bubble.element.style.animation = 'explode 0.5s ease-out'; // אפקט פיצוץ
             this.score += bubble.points * this.level;
             this.updateScore();
             this.saveBestScore();
@@ -198,15 +235,21 @@ class BubbleGame {
     }
 
     checkGameOver() {
-        if (this.bubbles.length >= this.maxBubbles) {
+        if (this.bubbles.length >= this.maxBubbles || this.missedBubbles >= this.maxMissedBubbles) {
             this.gameOver();
         }
     }
+    
 
     gameOver() {
         this.isPlaying = false;
         clearInterval(this.gameLoop);
         this.updateStatus('המשחק נגמר! לחץ על התחל כדי לשחק שוב');
         this.saveBestScore();
+
+        const startGameButton = document.getElementById('start-game');
+        if (startGameButton) {
+            startGameButton.disabled = false;
+        }
     }
 }
