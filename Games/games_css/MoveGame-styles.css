@@ -100,7 +100,13 @@
     gap: 2rem;
 }
 
-
+.best-score-Users {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: gold; 
+    font-weight: bold;
+}
 
 /* Bubbles */
 .bubble {

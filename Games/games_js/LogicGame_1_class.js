@@ -16,20 +16,22 @@ class PianoGame {
 
     initializeSongs() {
         return {
-            'אצא לי השוקה': {
-                notes: ['C4', 'E4', 'G4', 'C4', 'E4', 'G4', 'C4'],
+            'Twinkle': {
+                notes: ['C4', 'C4', 'G4', 'G4', 'A4', 'A4', 'G4'],
                 difficulty: 1
             },
-            'הבה נגילה': {
-                notes: ['D4', 'F4', 'A4', 'D4', 'F4', 'A4', 'D4', 'A4', 'F4'],
+            'Mary': {
+                notes: ['E4', 'D4', 'C4', 'D4', 'E4', 'E4', 'E4'],
                 difficulty: 2
             },
-            'דוד מלך ישראל': {
-                notes: ['C4', 'E4', 'G4', 'C4', 'G4', 'E4', 'C4', 'E4', 'G4', 'C4'],
+            'Happy': {
+                notes: ['G4', 'G4', 'A4', 'G4', 'C5', 'B4', 'G4', 'G4', 'A4', 'G4', 'D5', 'C5'],
                 difficulty: 3
             }
         };
     }
+    
+    
 
     initSounds() {
         const notes = ['C4', 'C#4', 'D4', 'D#4', 'E4', 'F4', 'F#4', 'G4', 'G#4', 'A4', 'A#4', 'B4'];
@@ -74,6 +76,7 @@ class PianoGame {
             key.addEventListener('click', () => {
                 if (this.isPlaying) {
                     const note = key.dataset.note;
+                    this.playSound(note);
                     this.handlePlayerInput(note);
                     this.animateKey(key);
                 }
@@ -88,24 +91,25 @@ class PianoGame {
                     if (key) {
                         this.handlePlayerInput(note);
                         this.animateKey(key);
+
                     }
                 }
             }
         });
     }
 
-    getNodeFromKeyboard(key) {
-        const keyMap = {
-            'a': 'C4', 'w': 'C#4',
-            's': 'D4', 'e': 'D#4',
-            'd': 'E4',
-            'f': 'F4', 't': 'F#4',
-            'g': 'G4', 'y': 'G#4',
-            'h': 'A4', 'u': 'A#4',
-            'j': 'B4'
-        };
-        return keyMap[key.toLowerCase()];
-    }
+    // getNodeFromKeyboard(key) {
+    //     const keyMap = {
+    //         'a': 'C4', 'w': 'C#4',
+    //         's': 'D4', 'e': 'D#4',
+    //         'd': 'E4',
+    //         'f': 'F4', 't': 'F#4',
+    //         'g': 'G4', 'y': 'G#4',
+    //         'h': 'A4', 'u': 'A#4',
+    //         'j': 'B4'
+    //     };
+    //     return keyMap[key.toLowerCase()];
+    // }
 
     startGame() {
         this.sequence = [];
