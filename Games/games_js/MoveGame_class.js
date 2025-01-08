@@ -65,17 +65,22 @@ class BubbleGame {
         }
     }
 
+    // getRandomIcon() {
+    //     const icons = [
+    //         'fas fa-music',     // תו מוזיקלי כללי
+    //         'fas fa-guitar',    // גיטרה
+    //         'fas fa-drum',      // תוף
+    //         'fas fa-microphone',// מיקרופון
+    //         'fas fa-headphones',// אוזניות
+    //         'fas fa-record-vinyl' // תקליט ויניל
+    //     ];
+    //     return icons[Math.floor(Math.random() * icons.length)];
+    // }
     getRandomIcon() {
-        const icons = [
-            'fas fa-music',     // תו מוזיקלי כללי
-            'fas fa-guitar',    // גיטרה
-            'fas fa-drum',      // תוף
-            'fas fa-microphone',// מיקרופון
-            'fas fa-headphones',// אוזניות
-            'fas fa-record-vinyl' // תקליט ויניל
-        ];
-        return icons[Math.floor(Math.random() * icons.length)];
+        const randomNumber = Math.floor(Math.random() * 20) + 1; // מספר רנדומלי בין 1 ל-20
+        return `../../Games/pictures/music (${randomNumber}).png`; // הנתיב לתמונה
     }
+    
 
     setupEventListeners() {
         const startButton = document.getElementById('start-game');
@@ -93,16 +98,54 @@ class BubbleGame {
         }
     }
 
+    // createBubble() {
+    //     const bubble = document.createElement('div');
+    //     bubble.className = 'bubble';
+        
+    //     // הגדרת צבע רנדומלי לבועה
+    //     const randomColor = this.getRandomColor();
+    //     bubble.style.background = `radial-gradient(circle, ${randomColor}, #000)`;
+    
+    //     // המשך קוד יצירת הבועה
+    //     const size = 50;
+    //     bubble.style.width = `${size}px`;
+    //     bubble.style.height = `${size}px`;
+    
+    //     const startX = Math.random() * (this.gameBoard.offsetWidth - size);
+    //     bubble.style.left = `${startX}px`;
+    //     bubble.style.top = `${this.gameBoard.offsetHeight}px`;
+    
+    //     const icon = document.createElement('i');
+    //     icon.className = this.getRandomIcon();
+    //     bubble.appendChild(icon);
+    
+    //     this.gameBoard.appendChild(bubble);
+    
+    //     const bubbleObj = {
+    //         element: bubble,
+    //         speed: this.bubbleSpeed * (Math.random() * 0.5 + 0.75),
+    //         points: Math.floor((60 - size) / 2) + 10
+    //     };
+    
+    //     bubble.addEventListener('click', () => {
+    //         if (this.isPlaying) {
+    //             this.popBubble(bubbleObj);
+    //         }
+    //     });
+    
+    //     this.bubbles.push(bubbleObj);
+    // }
+
     createBubble() {
         const bubble = document.createElement('div');
         bubble.className = 'bubble';
-        
+    
         // הגדרת צבע רנדומלי לבועה
         const randomColor = this.getRandomColor();
         bubble.style.background = `radial-gradient(circle, ${randomColor}, #000)`;
     
         // המשך קוד יצירת הבועה
-        const size = 50;
+        const size = 65;
         bubble.style.width = `${size}px`;
         bubble.style.height = `${size}px`;
     
@@ -110,8 +153,9 @@ class BubbleGame {
         bubble.style.left = `${startX}px`;
         bubble.style.top = `${this.gameBoard.offsetHeight}px`;
     
-        const icon = document.createElement('i');
-        icon.className = this.getRandomIcon();
+        // שימוש בתמונת אייקון רנדומלית
+        const icon = document.createElement('img');
+        icon.src = this.getRandomIcon();
         bubble.appendChild(icon);
     
         this.gameBoard.appendChild(bubble);
@@ -130,15 +174,16 @@ class BubbleGame {
     
         this.bubbles.push(bubbleObj);
     }
+    
 
     getRandomColor() {
         const colors = [
-            '#FF5733', // אדום-כתום
-            '#33FF57', // ירוק-בהיר
-            '#3357FF', // כחול
-            '#FFC300', // צהוב
-            '#FF33A1', // ורוד
-            '#8E44AD', // סגול כהה
+            '#ff9966', // כתום
+            '#66ff66', // ירוק-בהיר
+            '	 #80bfff', // כחול
+            '#b3f0ff', // צהוב
+            '#ffcccc', // ורוד
+            '#cc99ff', // סגול
         ];
         return colors[Math.floor(Math.random() * colors.length)];
     }
@@ -170,7 +215,14 @@ class BubbleGame {
 
     startGame() {
         clearInterval(this.gameLoop); // עצור לולאות קודמות
-        this.gameBoard.innerHTML = '';
+        //this.gameBoard.innerHTML = '';
+        
+         // הסרת כל הבועות מהלוח, אך שימור את התמונה של השחקן
+        this.bubbles.forEach(bubble => {
+            if (bubble.element.parentNode) {
+               bubble.element.parentNode.removeChild(bubble.element);
+            }
+        });
         this.bubbles = [];
         
         this.score = 0;
