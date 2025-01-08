@@ -1,9 +1,11 @@
+
+
 class PianoGame {
     constructor(containerId) {
         this.container = document.getElementById(containerId);
         this.sequence = [];
         this.playerSequence = [];
-        this.currentStep = 1; // מספר התווים לשלב הנוכחי
+        this.currentStep = 1;
         this.score = 0;
         this.bestScore = 0;
         this.isPlaying = false;
@@ -30,14 +32,12 @@ class PianoGame {
             }
         };
     }
-    
-    
 
     initSounds() {
         const notes = ['C4', 'C#4', 'D4', 'D#4', 'E4', 'F4', 'F#4', 'G4', 'G#4', 'A4', 'A#4', 'B4'];
         notes.forEach(note => {
             const encodedNote = note.replace('#', '%23');
-            const audio = new Audio(`../sounds/piano/${ encodedNote}.wav`);
+            const audio = new Audio(`../sounds/piano/${encodedNote}.wav`);
             this.sounds[note] = audio;
         });
     }
@@ -47,37 +47,79 @@ class PianoGame {
         this.updateScore();
         this.updateLevel();
         this.setupEventListeners();
-    }
-
-    loadBestScore() {
-        const saved = localStorage.getItem('pianoGameBestScorePersonal');
-        this.bestScore = saved ? parseInt(saved) : 0;
-        
-        document.getElementById('best-score').textContent = this.bestScore;
+        this.updateGlobalBestScore();
     }
 
     saveBestScore() {
-        if (this.score > this.bestScore) {
+        const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+        if (currentUser && this.score > this.bestScore) {
             this.bestScore = this.score;
-            localStorage.setItem('pianoGameBestScorePersonal', this.score);
-            document.getElementById('best-score').textContent = this.bestScore;
+            // עדכון ה-bestScore במשתמש הנוכחי
+            currentUser.bestScores = currentUser.bestScores || {};
+            currentUser.bestScores['LogicGame'] = this.bestScore;
+            localStorage.setItem('currentUser', JSON.stringify(currentUser));
 
-            this.updateGlobalBestScore();
-           
+            // עדכון ה-bestScore בטבלת המשתמשים
+            const users = JSON.parse(localStorage.getItem('gameUsers')) || [];
+            const userIndex = users.findIndex(user => user.username === currentUser.username);
+            if (userIndex !== -1) {
+                users[userIndex].bestScores = users[userIndex].bestScores || {};
+                users[userIndex].bestScores['LogicGame'] = this.bestScore;
+                localStorage.setItem('gameUsers', JSON.stringify(users));
+            }
+
+            this.updateDisplay();
+            this.updateGlobalBestScore()
+        }
+    }
+
+    loadBestScore() {
+        const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+        if (currentUser) {
+            // ניסיון לטעון את התוצאה מה-bestScores של המשתמש
+            currentUser.bestScores = currentUser.bestScores || {};
+            this.bestScore = currentUser.bestScores['LogicGame'] || 0;
+
+            // אם אין תוצאה, מנסה לטעון מטבלת המשתמשים
+            if (this.bestScore === 0) {
+                const users = JSON.parse(localStorage.getItem('gameUsers')) || [];
+                const user = users.find(u => u.email === currentUser.email);
+                if (user && user.bestScores && user.bestScores['LogicGame']) {
+                    this.bestScore = user.bestScores['LogicGame'];
+                    // עדכון ה-bestScore במשתמש הנוכחי
+                    currentUser.bestScores['LogicGame'] = this.bestScore;
+                    localStorage.setItem('currentUser', JSON.stringify(currentUser));
+                }
+            }
+
+            this.updateDisplay();
+        }
+    }
+
+    updateDisplay() {
+        const bestScoreElement = document.getElementById('best-score');
+        if (bestScoreElement) {
+            bestScoreElement.textContent = this.bestScore;
         }
     }
 
     updateGlobalBestScore() {
-        // Retrieve all users from localStorage
-        const users = JSON.parse(localStorage.getItem('users')) || [];
-    
-        // Find the highest score among all users for MoveGame
+        const users = JSON.parse(localStorage.getItem('gameUsers')) || [];
         const globalBestScore = users.reduce((maxScore, user) => {
-            return user.bestScores.MoveGame > maxScore ? user.bestScores.LogicGame : maxScore;
+            const score = user.bestScores?.LogicGame || 0;
+            return score > maxScore ? score : maxScore;
         }, 0);
-        // Update global best score in localStorage
+        let lastBestScoreGlobal= localStorage.getItem('pianoGameBestScoreGlobal');
+
+        if(lastBestScoreGlobal < this.bestScore ){
+            this.updateMedal();
+        }
         localStorage.setItem('pianoGameBestScoreGlobal', globalBestScore);
-        document.getElementById('best-score-Users').textContent = this.globalBestScore;
+        const globalScoreElement = document.getElementById('best-score-Users');
+        if (globalScoreElement) {
+            globalScoreElement.textContent = globalBestScore;
+        }
+        
     }
 
     setupEventListeners() {
@@ -85,7 +127,7 @@ class PianoGame {
 
         startGameButton.addEventListener('click', () => {
             this.startGame();
-            startGameButton.disabled = true; 
+            startGameButton.disabled = true;
         });
 
         const keys = document.querySelectorAll('.key');
@@ -100,38 +142,24 @@ class PianoGame {
             });
         });
 
-        document.addEventListener('keydown', (e) => {
-            if (this.isPlaying) {
-                const note = this.getNodeFromKeyboard(e.key);
-                if (note) {
-                    const key = document.querySelector(`[data-note="${note}"]`);
-                    if (key) {
-                        this.handlePlayerInput(note);
-                        this.animateKey(key);
-
-                    }
-                }
-            }
-        });
+        // document.addEventListener('keydown', (e) => {
+        //     if (this.isPlaying) {
+        //         const note = this.getNodeFromKeyboard(e.key);
+        //         if (note) {
+        //             const key = document.querySelector(`[data-note="${note}"]`);
+        //             if (key) {
+        //                 this.handlePlayerInput(note);
+        //                 this.animateKey(key);
+        //             }
+        //         }
+        //     }
+        // });
     }
-
-    // getNodeFromKeyboard(key) {
-    //     const keyMap = {
-    //         'a': 'C4', 'w': 'C#4',
-    //         's': 'D4', 'e': 'D#4',
-    //         'd': 'E4',
-    //         'f': 'F4', 't': 'F#4',
-    //         'g': 'G4', 'y': 'G#4',
-    //         'h': 'A4', 'u': 'A#4',
-    //         'j': 'B4'
-    //     };
-    //     return keyMap[key.toLowerCase()];
-    // }
 
     startGame() {
         this.sequence = [];
         this.playerSequence = [];
-        this.currentStep = 1; // אתחול לשלב הראשון
+        this.currentStep = 1;
         this.score = 0;
         this.level = 1;
         this.isPlaying = true;
@@ -145,7 +173,7 @@ class PianoGame {
     selectSong() {
         const availableSongs = Object.entries(this.songs)
             .filter(([_, song]) => song.difficulty === this.level);
-        
+
         if (availableSongs.length > 0) {
             const randomIndex = Math.floor(Math.random() * availableSongs.length);
             const [songName, song] = availableSongs[randomIndex];
@@ -164,15 +192,14 @@ class PianoGame {
     async playSequence() {
         this.isPlaying = false;
         this.updateStatus('הקשב לשיר...');
-        
-        // לנגן רק את חלק הרצף המתאים לשלב הנוכחי
+
         for (let i = 0; i < this.currentStep && i < this.sequence.length; i++) {
             const note = this.sequence[i];
             const key = document.querySelector(`[data-note="${note}"]`);
             await this.playNote(note, key);
             await this.wait(300);
         }
-        
+
         this.isPlaying = true;
         this.updateStatus('תורך! נגן את השיר');
         this.playerSequence = [];
@@ -201,28 +228,25 @@ class PianoGame {
         this.playerSequence.push(note);
         const currentIndex = this.playerSequence.length - 1;
 
-        // להשוות את קלט המשתמש רק לתווים בשלב הנוכחי
         if (this.playerSequence[currentIndex] !== this.sequence[currentIndex]) {
             this.gameOver();
             return;
         }
 
-        // אם המשתמש השלים את השלב הנוכחי בהצלחה
         if (this.playerSequence.length === this.currentStep) {
             this.score += 10 * this.level;
             this.updateScore();
             this.saveBestScore();
-            
-            // מעבר לשלב הבא
+
             this.currentStep++;
-            
+
             if (this.currentStep > this.sequence.length) {
                 this.level++;
                 this.updateLevel();
                 this.selectSong();
-                this.currentStep = 1; // לאתחל את השלב
+                this.currentStep = 1;
             }
-            
+
             setTimeout(() => this.playSequence(), 1500);
         }
     }
@@ -231,9 +255,60 @@ class PianoGame {
         this.isPlaying = false;
         this.updateStatus('המשחק נגמר! לחץ על התחל כדי לשחק שוב');
         this.saveBestScore();
+        this.updateGlobalBestScore();
 
         const startGameButton = document.getElementById('start-game');
         startGameButton.disabled = false;
+    }
+
+    updateMedal() {
+        const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+        let medals = 0;
+       
+        const users = JSON.parse(localStorage.getItem('gameUsers')) || [];
+        const userIndex = users.findIndex(user => user.username === currentUser.username);
+        if (userIndex !== -1) {
+            medals = users[userIndex].stars + 1;
+            
+            currentUser.stars = medals;
+            
+            users[userIndex].stars =  medals;
+            localStorage.setItem('gameUsers', JSON.stringify(users));
+            localStorage.setItem('currentUser', JSON.stringify(currentUser));
+          
+        }
+        const medalselement = document.getElementById('user-medal');
+        if (medalselement) {
+            medalselement.textContent = medals;
+        }
+
+        if (medals === 3 ) {
+            this.updateStatus('מיומן');
+        }
+        if (medals === 6 ) {
+            this.updateStatus('מומחה');
+        }
+        if (medals === 9 ) {
+            this.updateStatus('אלוף');
+        }
+    }
+
+    updateStatus(status_) {
+        const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+        let status = status_;
+        const users = JSON.parse(localStorage.getItem('gameUsers')) || [];
+        const userIndex = users.findIndex(user => user.username === currentUser.username);
+        if (userIndex !== -1) {
+           
+            currentUser.userLevel = status;
+            users[userIndex].userLevel = status;
+            localStorage.setItem('gameUsers', JSON.stringify(users));
+            localStorage.setItem('currentUser', JSON.stringify(currentUser));
+        }
+        const stautselement = document.getElementById('user-rank');
+        if (stautselement) {
+            stautselement.textContent = status;
+        }
     }
 
     updateScore() {

@@ -16,6 +16,29 @@ document.addEventListener('DOMContentLoaded', () => {
         if (usernameDisplay) {
             usernameDisplay.textContent = user.username;
         }
+
+        const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+        let medals = 0;
+        let status = 0;
+        const users = JSON.parse(localStorage.getItem('gameUsers')) || [];
+        const userIndex = users.findIndex(user => user.username === currentUser.username);
+        if (userIndex !== -1) {
+            medals = users[userIndex].stars;
+            status = users[userIndex].userLevel;
+            currentUser.stars = medals;
+            currentUser.userLevel = status;
+            localStorage.setItem('currentUser', JSON.stringify(currentUser));
+        }
+
+        const medalselement = document.getElementById('user-medal');
+        if (medalselement) {
+            medalselement.textContent = medals;
+        }
+        const stautselement = document.getElementById('user-rank');
+        if (stautselement) {
+            stautselement.textContent = medals;
+        }
+        
         try {
             const game = new LogicGame('game-board');
             game.init();

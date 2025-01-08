@@ -129,6 +129,20 @@
     gap: 0.5rem;
     color: gold; 
     font-weight: bold;
+    cursor: pointer;
+    border-radius: 12px; /* פינות מעוגלות */
+    padding: 10px 20px; /* ריפוד פנימי לנוחות */
+    border: 2px solid transparent; /* גבול שקוף שיתחלף בעת ריחוף */
+    transition: all 0.3s ease; /* אפקט מעבר חלק */
+}
+
+
+
+.best-score-Users:hover {
+    color: #FFFFFF; /* צבע טקסט לבן */
+    background-color: #8f1eff; /* צבע רקע כחול עז */
+    border-color: #FFD700; /* גבול זהב */
+    transform: scale(1.05); /* הגדלה קלה של האלמנט */
 }
 
 /* Bubbles */

@@ -32,29 +32,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
 
-    // // Handle Login Form
-    // const loginForm = document.getElementById('login-form');
-    // if (loginForm) {
-    //     loginForm.addEventListener('submit', async (e) => {
-    //         e.preventDefault();
-
-    //         try {
-    //             const username = document.getElementById('username').value;
-    //             const password = document.getElementById('password').value;
-
-    //             const user = userManager.login(username, password);
-    //             ToastManager.show(`התחברת בהצלחה!<br>התחברת לאחרונה: ${user["lastLogin"]}`, 'success');
-                
-    //             setTimeout(() => {
-    //                 window.location.href = '../main_html/game_board.html';
-    //             }, 1000);
-    //         } catch (error) {
-    //             ToastManager.show(error.message, 'error');
-    //         }
-    //     });
-    // }
-
-    
     
 
     //  Handle Register Form
@@ -91,22 +68,31 @@ document.addEventListener('DOMContentLoaded', () => {
                 usernameDisplay.textContent = user.username;
             }
 
-            // const activeGameCard = document.querySelector('.game-card.active');
-            // if (activeGameCard) {
-            //     const playButton = activeGameCard.querySelector('.btn-play');
-            //     if (playButton) {
-            //         playButton.addEventListener('click', () => {
-            //             console.log('Button clicked, redirecting to game2.html');
-            //             window.location.href = 'game2.html';
-            //         });
-            //     } else {
-            //         console.error('Play button not found in active game card.');
-            //     }
-            // } else {
-            //     console.error('Active game card not found.');
-            // }
+            const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+            let medals = 0;
+            let status = 'מתחיל';
+            const users = JSON.parse(localStorage.getItem('gameUsers')) || [];
+            const userIndex = users.findIndex(user => user.username === currentUser.username);
+            if (userIndex !== -1) {
+                medals = users[userIndex].stars; 
+                status = users[userIndex].userLevel;
+                currentUser.stars = medals;
+                currentUser.userLevel = status;
+                localStorage.setItem('currentUser', JSON.stringify(currentUser));
+            }
+         
+            const medalselement = document.getElementById('user-medal');
+            if (medalselement) {
+                medalselement.textContent = medals;
+           }
+           const stautselement = document.getElementById('user-rank');
+           if (stautselement) {
+            stautselement.textContent = status;
+           }
 
+        
 
+           
             // בחירת כרטיסי המשחק
             const moveGameCard = document.querySelector('.game-card.move');
             const logicGameCard = document.querySelector('.game-card.logic');
@@ -147,25 +133,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     window.location.href = 'index.html';
                 }, 1000);
 
-                // logoutButton.addEventListener('click', () => {
-                //     userManager.logout();
-                //     window.location.href = 'index.html';
-                // });
             });}
         }
     }
 
-    // // Game2 Page Logic
-    // if (window.location.pathname.includes('Games/games_html/LogicGame.html')) {
-    //     if (!userManager.isLoggedIn()) {
-    //         window.location.href = 'Main/main_html/index.html';
-    //     } else {
-    //         try {
-    //             const game = new LogicGame('game-board');
-    //             game.init();
-    //         } catch (error) {
-    //             console.error('Error initializing LogicGame:', error);
-    //         }
-    //     }
-    // }
 });

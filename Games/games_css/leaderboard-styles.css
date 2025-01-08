@@ -1,0 +1,227 @@
+/* Leaderboard Styles - Updated to match main theme */
+body {
+    background-color: var(--background-dark);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    color: var(--text-primary);
+}
+
+/* Leaderboard Container */
+.leaderboard-container {
+    max-width: 900px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background: var(--card-bg);
+    border-radius: 1rem;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease;
+    backdrop-filter: blur(10px);
+}
+
+.leaderboard-container:hover {
+    transform: translateY(-5px);
+}
+
+/* Main Header */
+.leaderboard-header {
+    text-align: center;
+    margin-bottom: 3rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid rgba(156, 163, 175, 0.1);
+}
+
+.leaderboard-title {
+    font-size: 2.5rem;
+    color: var(--text-primary);
+    margin-bottom: 1rem;
+    font-weight: 700;
+    
+}
+
+/* Current User Rank */
+.current-user-rank {
+    font-size: 1.4rem;
+    color: var(--text-primary);
+    padding: 1rem 2rem;
+    background: rgba(124, 58, 237, 0.1);
+    border-radius: 0.75rem;
+    display: inline-block;
+    margin-top: 1rem;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Rankings Table */
+.rankings-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    margin-top: 2rem;
+}
+
+/* Updated Table Headers */
+.rankings-table th {
+    padding: 1.5rem;
+    background-color: rgba(45, 55, 72, 0.95);
+    color: var(--text-secondary);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    border-bottom: 1px solid rgba(156, 163, 175, 0.1);
+    text-align: right; /* Changed from default to right alignment */
+}
+
+/* Table Cells */
+.rankings-table td {
+    padding: 1.2rem 1.5rem;
+    border-bottom: 1px solid rgba(156, 163, 175, 0.1);
+    vertical-align: middle;
+    color: var(--text-primary);
+    text-align: right; /* Added to align content with headers */
+}
+
+/* Keep specific columns centered if needed */
+.rankings-table th.center,
+.rankings-table td.center {
+    text-align: center;
+}
+
+/* Keep specific columns left-aligned if needed */
+.rankings-table th.left,
+.rankings-table td.left {
+    text-align: left;
+}
+
+/* Table Rows */
+.rankings-table tr {
+    transition: all 0.3s ease;
+}
+
+.rankings-table tr:hover {
+    background-color: rgba(45, 55, 72, 0.5);
+    transform: scale(1.01);
+}
+
+/* Medal Styles */
+.medal {
+    font-size: 1.8rem;
+    margin-right: 0.8rem;
+    vertical-align: middle;
+}
+
+.gold {
+    color: #FFD700;
+    text-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
+}
+
+.silver {
+    color: #C0C0C0;
+    text-shadow: 0 0 10px rgba(192, 192, 192, 0.3);
+}
+
+.bronze {
+    color: #CD7F32;
+    text-shadow: 0 0 10px rgba(205, 127, 50, 0.3);
+}
+
+/* Current User Row */
+.current-user-row {
+    background-color: rgba(124, 58, 237, 0.1);
+    font-weight: 600;
+}
+
+.current-user-row td {
+    border-bottom: 1px solid var(--primary-color);
+}
+
+/* Back Button */
+.back-button {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.8rem 1.5rem;
+    background: var(--primary-color);
+    color: var(--text-primary);
+    border: none;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    text-decoration: none;
+    margin-top: 2rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.back-button:hover {
+    background: var(--primary-hover);
+    transform: translateY(-2px);
+}
+
+.back-button i {
+    margin-left: 0.8rem;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from { 
+        opacity: 0; 
+        transform: translateY(20px); 
+    }
+    to { 
+        opacity: 1; 
+        transform: translateY(0); 
+    }
+}
+
+.leaderboard-container {
+    animation: fadeIn 0.6s ease-out;
+}
+
+.rankings-table tr {
+    opacity: 0;
+    animation: fadeIn 0.5s ease-out forwards;
+}
+
+.rankings-table tr:nth-child(1) { animation-delay: 0.1s; }
+.rankings-table tr:nth-child(2) { animation-delay: 0.2s; }
+.rankings-table tr:nth-child(3) { animation-delay: 0.3s; }
+.rankings-table tr:nth-child(n+4) { animation-delay: 0.4s; }
+
+/* Top 3 Row Highlights */
+.rankings-table tr:nth-child(1) td {
+    background-color: rgba(255, 215, 0, 0.05);
+}
+
+.rankings-table tr:nth-child(2) td {
+    background-color: rgba(192, 192, 192, 0.05);
+}
+
+.rankings-table tr:nth-child(3) td {
+    background-color: rgba(205, 127, 50, 0.05);
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+    .leaderboard-container {
+        margin: 1rem;
+        padding: 1rem;
+    }
+
+    .leaderboard-title {
+        font-size: 2rem;
+    }
+
+    .current-user-rank {
+        font-size: 1.2rem;
+        padding: 0.8rem 1.5rem;
+    }
+
+    .rankings-table th,
+    .rankings-table td {
+        padding: 1rem;
+        font-size: 0.9rem;
+    }
+
+    .medal {
+        font-size: 1.5rem;
+    }
+}

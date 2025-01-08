@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="he">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>טבלת דירוג - משחק פסנתר</title>
+    <link rel="stylesheet" href="..\games_css\LogicGame-styles_1.css">
+    <link rel="stylesheet" href="..\games_css\leaderboard-styles.css">
+    <link rel="stylesheet" href="..\..\Main\main_css\styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+</head>
+<body>
+    <nav class="game-nav">
+        <div class="nav-content">
+            <div class="logo-container">
+                <i class="fas fa-music logo-icon"></i>
+                <span>MusicGame</span>
+            </div>
+            
+            <div class="user-section">
+                <div class="user-info">
+                    <i class="fa-solid fa-user"></i>
+                    <span id="username-display">שם משתמש</span>
+                </div>
+                <div class="user-stats">
+                    <div class="stat">
+                        <i class="fas fa-medal"></i>
+                        <span id="user-medal">0</span>
+                    </div>
+                    <div class="stat">
+                        <i class="fas fa-user-plus"></i>
+                        <span id="user-rank">מתחיל</span>
+                    </div>
+                </div>
+                <button id="logout" class="btn-logout">
+                    <i class="fa-solid fa-house"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+    <div class="leaderboard-container">
+        <div class="leaderboard-header">
+            <h1 class="leaderboard-title">טבלת דירוג - משחק פסנתר</h1>
+            <div id="current-user-rank" class="current-user-rank"></div>
+        </div>
+
+        <table class="rankings-table">
+            <thead>
+                <tr>
+                    <th>דירוג</th>
+                    <th>שם משתמש</th>
+                    <th>ניקוד</th>
+                </tr>
+            </thead>
+            <tbody id="rankings-body">
+                <!-- תוכן הטבלה יתווסף דינמית ע"י JavaScript -->
+            </tbody>
+        </table>
+
+        <a href="LogicGame_1.html" class="back-button">
+            <i class="fas fa-arrow-right"></i>
+            חזרה למשחק
+        </a>
+    </div>
+
+    <script src="..\..\Main\main_js\utils.js"></script>
+    <script src="..\games_js\leaderboard.js"></script>
+</body>
+</html>
