@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 const user = userManager.login(username, password);
                 ToastManager.show(`התחברת בהצלחה!<br>התחברת לאחרונה: ${user["lastLogin"]}`, 'success');
-                
+
                 setTimeout(() => {
                     window.location.href = '../main_html/game_board.html';
                 }, 1000);
@@ -31,7 +31,33 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Handle Register Form
+
+    // // Handle Login Form
+    // const loginForm = document.getElementById('login-form');
+    // if (loginForm) {
+    //     loginForm.addEventListener('submit', async (e) => {
+    //         e.preventDefault();
+
+    //         try {
+    //             const username = document.getElementById('username').value;
+    //             const password = document.getElementById('password').value;
+
+    //             const user = userManager.login(username, password);
+    //             ToastManager.show(`התחברת בהצלחה!<br>התחברת לאחרונה: ${user["lastLogin"]}`, 'success');
+                
+    //             setTimeout(() => {
+    //                 window.location.href = '../main_html/game_board.html';
+    //             }, 1000);
+    //         } catch (error) {
+    //             ToastManager.show(error.message, 'error');
+    //         }
+    //     });
+    // }
+
+    
+    
+
+    //  Handle Register Form
     const registerForm = document.getElementById('register-form');
     if (registerForm) {
         registerForm.addEventListener('submit', async (e) => {
