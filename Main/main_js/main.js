@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 const password = document.getElementById('password').value;
 
                 const user = userManager.login(username, password);
-                ToastManager.show('התחברת בהצלחה! '+user["lastLogin"], ' success');
+                ToastManager.show(`התחברת בהצלחה!<br>התחברת לאחרונה: ${user["lastLogin"]}`, 'success');
                 
                 setTimeout(() => {
                     window.location.href = '../main_html/game_board.html';

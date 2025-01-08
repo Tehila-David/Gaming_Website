@@ -50,17 +50,34 @@ class PianoGame {
     }
 
     loadBestScore() {
-        const saved = localStorage.getItem('pianoGameBestScore');
+        const saved = localStorage.getItem('pianoGameBestScorePersonal');
         this.bestScore = saved ? parseInt(saved) : 0;
+        
         document.getElementById('best-score').textContent = this.bestScore;
     }
 
     saveBestScore() {
         if (this.score > this.bestScore) {
             this.bestScore = this.score;
-            localStorage.setItem('pianoGameBestScore', this.score);
+            localStorage.setItem('pianoGameBestScorePersonal', this.score);
             document.getElementById('best-score').textContent = this.bestScore;
+
+            this.updateGlobalBestScore();
+           
         }
+    }
+
+    updateGlobalBestScore() {
+        // Retrieve all users from localStorage
+        const users = JSON.parse(localStorage.getItem('users')) || [];
+    
+        // Find the highest score among all users for MoveGame
+        const globalBestScore = users.reduce((maxScore, user) => {
+            return user.bestScores.MoveGame > maxScore ? user.bestScores.LogicGame : maxScore;
+        }, 0);
+        // Update global best score in localStorage
+        localStorage.setItem('pianoGameBestScoreGlobal', globalBestScore);
+        document.getElementById('best-score-Users').textContent = this.globalBestScore;
     }
 
     setupEventListeners() {

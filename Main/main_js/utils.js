@@ -7,7 +7,12 @@ class UserManager {
                 username: 'test',
                 password: 'test123',
                 email: 'test@test.com',
-                scores: { game1: [], game2: [] },
+                bestScores: {
+                    MoveGame: 0,
+                    LogicGame: 0
+                },
+                stars:0,
+                userLevel: 'מתחיל',
                 lastLogin: new Date().toISOString()
             }]));
         }
@@ -86,10 +91,12 @@ class UserManager {
             username,
             password,
             email,
-            scores: {
-                game1: [],
-                game2: []
+            bestScores: {
+                MoveGame :0,
+                LogicGame:0
             },
+            stars:0,
+            userLevel: 'מתחיל',
             registrationDate: new Date().toISOString(),
             lastLogin: new Date().toISOString()
         };
