@@ -13,6 +13,7 @@ class PianoGame {
         this.bestScore = 0; // Player's personal best score
         this.isPlaying = false; // Flag to track if the game is active
         this.level = 1; // Current difficulty level
+        this.flag = 'True' //update the user's medal based on their stars - only once!!
 
         // Load predefined songs
         this.songs = this.initializeSongs();
@@ -126,7 +127,7 @@ class PianoGame {
         // Check if a new global best score is achieved and update medals
         let lastBestScoreGlobal = localStorage.getItem('pianoGameBestScoreGlobal');
         if (lastBestScoreGlobal < this.bestScore) {
-            this.updateMedal();
+            this.updateMedal(this.flag);
         }
         localStorage.setItem('pianoGameBestScoreGlobal', globalBestScore);
 
@@ -280,37 +281,41 @@ class PianoGame {
     }
 
     // Function to update the user's medal based on their stars
-    updateMedal() {
-        const currentUser = JSON.parse(localStorage.getItem('currentUser'));
-        let medals = 0;
-
-        const users = JSON.parse(localStorage.getItem('gameUsers')) || [];
-        const userIndex = users.findIndex(user => user.username === currentUser.username);
-        if (userIndex !== -1) {
-            medals = users[userIndex].stars + 1; // Increase medal count by 1
-
-            currentUser.stars = medals; // Update the current user's stars
-            users[userIndex].stars = medals; // Update the user's stars in the list
-            localStorage.setItem('gameUsers', JSON.stringify(users)); // Save the updated users list
-            localStorage.setItem('currentUser', JSON.stringify(currentUser)); // Save the updated current user
+    updateMedal(flag) {
+        if(flag ==='True'){
+            this.flag= 'False';
+            const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+            let medals = 0;
+    
+            const users = JSON.parse(localStorage.getItem('gameUsers')) || [];
+            const userIndex = users.findIndex(user => user.username === currentUser.username);
+            if (userIndex !== -1) {
+                medals = users[userIndex].stars + 1; // Increase medal count by 1
+    
+                currentUser.stars = medals; // Update the current user's stars
+                users[userIndex].stars = medals; // Update the user's stars in the list
+                localStorage.setItem('gameUsers', JSON.stringify(users)); // Save the updated users list
+                localStorage.setItem('currentUser', JSON.stringify(currentUser)); // Save the updated current user
+            }
+    
+            const medalselement = document.getElementById('user-medal');
+            if (medalselement) {
+                medalselement.textContent = medals; // Display the medal count
+            }
+            console.log("MEDALS:"+medals);
+            if (medals  >= 9) {
+                this.updateStatusUser('אלוף');
+            }
+            if (medals >= 6) {
+                this.updateStatusUser('מומחה');
+            }
+            // Update the status based on the number of medals
+            if (medals >= 3) {
+                this.updateStatusUser('מיומן');
+            }
+            
         }
-
-        const medalselement = document.getElementById('user-medal');
-        if (medalselement) {
-            medalselement.textContent = medals; // Display the medal count
-        }
-        console.log("MEDALS:"+medals);
-        if (medals  >= 9) {
-            this.updateStatusUser('אלוף');
-        }
-        if (medals >= 6) {
-            this.updateStatusUser('מומחה');
-        }
-        // Update the status based on the number of medals
-        if (medals >= 3) {
-            this.updateStatusUser('מיומן');
-        }
-        
+      
     }
 
     // Function to update the user's status

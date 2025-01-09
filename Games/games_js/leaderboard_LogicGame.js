@@ -22,7 +22,36 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const currentUser = JSON.parse(localStorage.getItem('currentUser')); // Get the current user from localStorage
         const users = JSON.parse(localStorage.getItem('gameUsers')) || []; // Retrieve all game users from localStorage or an empty array if not found
+        // Initialize variables for medals and user status
+      
+        let medals = 0; // Default medal count
+        let status = 'מתחיל'; // Default status (Beginner)
 
+    
+        // Find the index of the current user in the users list
+        const userIndex = users.findIndex(user => user.username === currentUser.username);
+        if (userIndex !== -1) {
+            medals = users[userIndex].stars; // Get the user's current medal count
+            status = users[userIndex].userLevel; // Get the user's current status
+            
+            // Update currentUser object with latest medal count and status
+            currentUser.stars = medals;
+            currentUser.userLevel = status;
+            localStorage.setItem('currentUser', JSON.stringify(currentUser)); // Save updated currentUser to localStorage
+        }
+
+        // Display the user's medal count on the page
+        const medalselement = document.getElementById('user-medal');
+        if (medalselement) {
+            medalselement.textContent = medals;
+        }
+
+        // Display the user's status on the page
+        const stautselement = document.getElementById('user-rank');
+        if (stautselement) {
+            stautselement.textContent = status;
+        }
+        
         // Sort users by their LogicGame best score in descending order
         const sortedUsers = users
             .filter(user => user.bestScores && user.bestScores.LogicGame) // Filter users with valid bestScores.LogicGame
