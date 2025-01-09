@@ -24,38 +24,31 @@
     gap: 8px;
 }
 
-/* Game Board */
-/* #game-board {
-    position: relative;
-    width: 100%;
-    height: 400px;
-    background: #e1dde4 ;  מעבר צבעים בסגול וכחול עדין 
-   
-    border-radius: 10px;
-    overflow: hidden;
-} */
+
 
 #game-board {
-    position: relative; /* מיקום יחסי עבור אלמנטים בתוך הלוח */
-    width: 100%; /* רוחב מלא */
-    height: 400px; /* גובה של 400 פיקסלים */
-    background: white; /* צבע רקע סגול-בהיר */
-    border-radius: 10px; /* פינות מעוגלות */
-    overflow: hidden; /* מסתיר תוכן שיוצא מגבולות הלוח */
-    background-repeat: no-repeat; /* ללא חזרה של ה-GIF */
-    background-position: bottom center; /* מיקום ה-GIF בחלק התחתון ובאמצע */
-    background-size: contain; /* התאמה לגודל מבלי לעוות את התמונה */
+    position: relative; 
+    width: 100%; 
+    height: 400px;
+    background: white; 
+    border-radius: 10px; 
+    overflow: hidden; 
+    background-repeat: no-repeat;
+    background-position: bottom center; 
+    background-size: contain; 
 }
 
 
+
+
 .game-player {
-    position: absolute; /* מיקום מוחלט */
-    bottom: 10px; /* מרווח של 10 פיקסלים מהחלק התחתון */
-    left: 50%; /* מיקום אופקי במרכז */
-    transform: translateX(-50%); /* מוודא שהתמונה ממורכזת אופקית */
-    width: 80px; /* רוחב התמונה */
-    height: auto; /* שומר על יחס הגובה-רוחב */
-    pointer-events: none; /* מונע אינטראקציה עם הגיפ */
+    position: absolute; 
+    bottom: 0px; 
+    left: 50%; 
+    transform: translateX(-50%); 
+    width: 120%; 
+    height: 140%; 
+    pointer-events: none; /
 }
 
 /* Game Controls */
@@ -130,19 +123,19 @@
     color: gold; 
     font-weight: bold;
     cursor: pointer;
-    border-radius: 12px; /* פינות מעוגלות */
-    padding: 10px 20px; /* ריפוד פנימי לנוחות */
-    border: 2px solid transparent; /* גבול שקוף שיתחלף בעת ריחוף */
-    transition: all 0.3s ease; /* אפקט מעבר חלק */
+    border-radius: 12px; 
+    padding: 10px 20px; 
+    border: 2px solid transparent; 
+    transition: all 0.3s ease; 
 }
 
 
 
 .best-score-Users:hover {
-    color: #FFFFFF; /* צבע טקסט לבן */
-    background-color: #8f1eff; /* צבע רקע כחול עז */
-    border-color: #FFD700; /* גבול זהב */
-    transform: scale(1.05); /* הגדלה קלה של האלמנט */
+    color: #FFFFFF; 
+    background-color: #8f1eff; 
+    border-color: #FFD700; 
+    transform: scale(1.05); 
 }
 
 /* Bubbles */
@@ -160,16 +153,12 @@
     transition: transform 0.3s;
 }
 
-/* .bubble i {
-    color: white;
-    font-size: 1.5rem;
-} */
 
 /* Added styles for images inside bubbles */
 .bubble img {
-    width: 65%; /* שינוי - התאמת גודל התמונה */
-    height: 65%; /* שינוי - התאמת גובה התמונה */
-    object-fit: contain; /* שינוי - התאמת יחס התמונה */
+    width: 65%; 
+    height: 65%; 
+    object-fit: contain; 
 }
 
 @keyframes explode {

@@ -9,11 +9,14 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
+    <div class="particles-background"></div>
+    <div class="background-image"></div>
+    <div class="background-overlay"></div>
     <nav class="game-nav">
         <div class="nav-content">
             <div class="logo-container">
                 <i class="fas fa-music logo-icon"></i>
-                <span>MusicGame</span>
+                <span>Music Games</span>
             </div>
             
             <div class="user-section">
@@ -56,20 +59,18 @@
             </div>
             <div class="piano-container">
                 <div class="piano-keys">
-                    <!-- הקבוצה הראשונה -->
-                    <div class="key white" data-note="C4" data-hebrew="C4"></div>
-                    <div class="key black" data-note="C#4" data-hebrew=" "></div>
-                    <div class="key white" data-note="D4" data-hebrew="D4"></div>
-                    <div class="key black" data-note="D#4" data-hebrew=""></div>
-                    <div class="key white" data-note="E4" data-hebrew="E4" ></div>
-                    <!-- אין מקש שחור בין E ו-F -->
-                    <div class="key white" data-note="F4" data-hebrew="F4"></div>
-                    <div class="key black" data-note="F#4" data-hebrew=""></div>
-                    <div class="key white" data-note="G4" data-hebrew="G4"></div>
-                    <div class="key black" data-note="G#4" data-hebrew=""></div>
-                    <div class="key white" data-note="A4" data-hebrew="A4"></div>
-                    <div class="key black" data-note="A#4" data-hebrew=""></div>
-                    <div class="key white" data-note="B4" data-hebrew="B4"></div>
+                    <div class="key white" data-note="C4" data-note_text="C4"></div>
+                    <div class="key black" data-note="C#4" data-note_text=" "></div>
+                    <div class="key white" data-note="D4" data-note_text="D4"></div>
+                    <div class="key black" data-note="D#4" data-note_text=""></div>
+                    <div class="key white" data-note="E4" data-note_text="E4" ></div>
+                    <div class="key white" data-note="F4" data-note_text="F4"></div>
+                    <div class="key black" data-note="F#4" data-note_text=""></div>
+                    <div class="key white" data-note="G4" data-note_text="G4"></div>
+                    <div class="key black" data-note="G#4" data-note_text=""></div>
+                    <div class="key white" data-note="A4" data-note_text="A4"></div>
+                    <div class="key black" data-note="A#4" data-note_text=""></div>
+                    <div class="key white" data-note="B4" data-note_text="B4"></div>
                 </div>
             </div>
         </div>
@@ -92,6 +93,52 @@
             </div>
         </div>
     </div>
+    <footer class="site-footer">
+        <div class="footer-container">
+           
+            <div class="footer-section">
+                <h3>אודות Music Games</h3>
+                <p>הפלטפורמה המובילה בישראל למשחקי מוזיקה. הצטרפו אלינו לחוויה מוזיקלית מרתקת.</p>
+            </div>
+    
+            <div class="footer-section">
+                <h3>קישורים מהירים</h3>
+                <ul>
+                    <li><a href="#"><i class="fas fa-book"></i> מדריכים</a></li>
+                    <li><a href="#"><i class="fas fa-question-circle"></i> תמיכה</a></li>
+                </ul>
+            </div>
+    
+           
+            <div class="footer-section">
+                <h3>יצירת קשר</h3>
+                <ul>
+                    <li><i class="fas fa-envelope"></i> support@musicgames.co.il</li>
+                    <li><i class="fas fa-phone"></i> 03-1234567</li>
+                </ul>
+            </div>
+    
+          
+            <div class="footer-section">
+                <h3>עקבו אחרינו</h3>
+                <div class="social-links">
+                    <a href="#" title="פייסבוק"><i class="fab fa-facebook"></i></a>
+                    <a href="#" title="אינסטגרם"><i class="fab fa-instagram"></i></a>
+                    <a href="#" title="טוויטר"><i class="fab fa-twitter"></i></a>
+                    <a href="#" title="דיסקורד"><i class="fab fa-discord"></i></a>
+                </div>
+            </div>
+        </div>
+    
+       
+        <div class="footer-bottom">
+            <p>&copy; 2024 Music Games. כל הזכויות שמורות.</p>
+            <div class="footer-legal">
+                <a href="#">תנאי שימוש</a>
+                <a href="#">מדיניות פרטיות</a>
+            </div>
+        </div>
+    </footer>
     <script src="..\..\Main\main_js\utils.js"></script>
     <script src="..\games_js\LogicGame_1_class.js"></script>
     <script src="..\games_js\LogicGame_1_events.js"></script>

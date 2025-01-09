@@ -9,11 +9,14 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body class="game_board-page">
+    <div class="particles-background"></div>
+    <div class="background-image"></div>
+    <div class="background-overlay"></div>
     <nav class="game-nav">
         <div class="nav-content">
             <div class="logo-container">
                 <i class="fas fa-music logo-icon"></i>
-                <span>MusicGame</span>
+                <span>Music Games</span>
             </div>
             
             <div class="user-section">
@@ -43,7 +46,7 @@
             <!--  משחק תנועה בועות -->
             <div class="game-card move" id="game-container-1">
                 <div class="game-header">
-                    <h2>פיצוץ בועות</h2>
+                    <h2>משחק פיצוץ בועות תווים </h2>
                     <div class="game-stats">
                         <span class="difficulty">
                             <i class="fas fa-signal"></i>
@@ -91,7 +94,27 @@
             <!-- משחקים בפיתוח -->
             <div class="game-card coming-soon">
                 <div class="game-header">
-                    <h2>קרוב מאוד...</h2>
+                    <h2> משחק זיהוי שירים</h2>
+                    <div class="game-stats">
+                        <span class="development">
+                            <i class="fas fa-code"></i>
+                            בפיתוח
+                        </span>
+                    </div>
+                </div>
+                <div class="game-preview blur">
+                    <img src="/api/placeholder/300/200" alt="משחק בפיתוח">
+                    <div class="coming-soon-overlay">
+                        
+                        <i class="fas fa-clock"></i>
+                        <span>בקרוב...</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="game-card coming-soon">
+                <div class="game-header">
+                    <h2>משחק הזיכרון של  זמרים</h2>
                     <div class="game-stats">
                         <span class="development">
                             <i class="fas fa-code"></i>
@@ -107,10 +130,27 @@
                     </div>
                 </div>
             </div>
-
             <div class="game-card coming-soon">
                 <div class="game-header">
-                    <h2>חדש בדרך</h2>
+                    <h2>משחק קריוקי</h2>
+                    <div class="game-stats">
+                        <span class="development">
+                            <i class="fas fa-code"></i>
+                            בפיתוח
+                        </span>
+                    </div>
+                </div>
+                <div class="game-preview blur">
+                    <img src="/api/placeholder/300/200" alt="משחק בפיתוח">
+                    <div class="coming-soon-overlay">
+                        <i class="fas fa-clock"></i>
+                        <span>בקרוב...</span>
+                    </div>
+                </div>
+            </div>
+            <div class="game-card coming-soon">
+                <div class="game-header">
+                    <h2>משחק טריווית מוזיקה</h2>
                     <div class="game-stats">
                         <span class="development">
                             <i class="fas fa-code"></i>
@@ -128,6 +168,52 @@
             </div>
         </div>
     </main>
+    <footer class="site-footer">
+        <div class="footer-container">
+           
+            <div class="footer-section">
+                <h3>אודות Music Games</h3>
+                <p>הפלטפורמה המובילה בישראל למשחקי מוזיקה. הצטרפו אלינו לחוויה מוזיקלית מרתקת.</p>
+            </div>
+    
+            <div class="footer-section">
+                <h3>קישורים מהירים</h3>
+                <ul>
+                    <li><a href="#"><i class="fas fa-book"></i> מדריכים</a></li>
+                    <li><a href="#"><i class="fas fa-question-circle"></i> תמיכה</a></li>
+                </ul>
+            </div>
+    
+           
+            <div class="footer-section">
+                <h3>יצירת קשר</h3>
+                <ul>
+                    <li><i class="fas fa-envelope"></i> support@musicgames.co.il</li>
+                    <li><i class="fas fa-phone"></i> 03-1234567</li>
+                </ul>
+            </div>
+    
+          
+            <div class="footer-section">
+                <h3>עקבו אחרינו</h3>
+                <div class="social-links">
+                    <a href="#" title="פייסבוק"><i class="fab fa-facebook"></i></a>
+                    <a href="#" title="אינסטגרם"><i class="fab fa-instagram"></i></a>
+                    <a href="#" title="טוויטר"><i class="fab fa-twitter"></i></a>
+                    <a href="#" title="דיסקורד"><i class="fab fa-discord"></i></a>
+                </div>
+            </div>
+        </div>
+    
+       
+        <div class="footer-bottom">
+            <p>&copy; 2024 Music Games. כל הזכויות שמורות.</p>
+            <div class="footer-legal">
+                <a href="#">תנאי שימוש</a>
+                <a href="#">מדיניות פרטיות</a>
+            </div>
+        </div>
+    </footer>
 
     <script src="../main_js/main.js"></script>
     <script src="../main_js/utils.js"></script>

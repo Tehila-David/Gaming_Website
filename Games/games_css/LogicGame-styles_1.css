@@ -2,27 +2,40 @@
 
 .game-controls {
     text-align: center;
-    margin-top: 2rem; /* הוספת רווח של 2rem מלמעלה */
-} 
+    margin-top: 2rem;
+}
 
 
 .game-container {
     max-width: 800px;
     margin: 2rem auto;
     padding: 2rem;
-    background: rgba(45, 55, 72, 0.95);
+    background-color: rgba(56, 51, 51, 0.9); /* צבע כסף שקוף */
+    background-image: url("../../Games/pictures/2.png");
+    background-size: cover;
+    background-position: center;
     border-radius: 1rem;
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
-
 }
-
-.level-indicator, .score-container {
+.game-container::after {
+    content: "";
+    margin: 2rem auto;
+    background-color: rgba(0, 0, 0, 0.4); /* כהה עם שקיפות */
+    border-radius: 1rem;
+    background-size: cover;
+    background-position: center;
+    border-radius: 1rem;
+    z-index: -1; /* מוודא שהתמונה תישאר מעל השכבה */
+}
+.level-indicator,
+.score-container {
     font-size: 1.2rem;
     font-weight: bold;
     display: flex;
     align-items: center;
     gap: 8px;
 }
+
 .game-header {
     display: flex;
     justify-content: space-between;
@@ -33,16 +46,7 @@
     border-radius: 0.5rem;
 }
 
-/* .game-board {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 2rem;
-    padding: 2rem;
-    background: linear-gradient(145deg, #2b2631, #a9a1a1);
-    border-radius: 3rem;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-} */
+
 
 .song-info {
     font-size: 1.5rem;
@@ -59,8 +63,8 @@
     padding: 2rem;
     border-radius: 12px;
     box-shadow: 0 -6px 0 #333,
-                0 8px 20px rgba(0, 0, 0, 0.4),
-                inset 0 2px 0 rgba(255, 255, 255, 0.1);
+        0 8px 20px rgba(0, 0, 0, 0.4),
+        inset 0 2px 0 rgba(255, 255, 255, 0.1);
     border: 2px solid rgba(255, 255, 255, 0.4);
     box-shadow: 0 0 30px rgba(255, 255, 255, 0.6), 0 0 50px rgba(0, 0, 0, 0.2);
 }
@@ -84,18 +88,20 @@
     transition: all 0.1s ease;
     user-select: none;
 }
+
 .key:hover {
     box-shadow: 0 0 15px rgba(255, 255, 255, 0.8);
 }
+
 .white {
     flex: 1;
     background: linear-gradient(to bottom, #fff 0%, #eee 100%);
     border: 1px solid #ccc;
     border-radius: 0 0 12px 12px;
     color: #333;
-    box-shadow: inset 0 1px 0px rgba(255,255,255,1),
-                inset 0 -1px 0px rgba(0,0,0,0.1),
-                0 4px 0 rgba(0,0,0,0.1);
+    box-shadow: inset 0 1px 0px rgba(255, 255, 255, 1),
+        inset 0 -1px 0px rgba(0, 0, 0, 0.1),
+        0 4px 0 rgba(0, 0, 0, 0.1);
     z-index: 1;
 }
 
@@ -108,37 +114,52 @@
     z-index: 2;
     color: #fff;
     font-size: 0.8em;
-    box-shadow: inset 0 -1px 0px rgba(255,255,255,0.1),
-                inset 0 -4px 0px rgba(0,0,0,0.1),
-                0 4px 8px rgba(0,0,0,0.4);
+    box-shadow: inset 0 -1px 0px rgba(255, 255, 255, 0.1),
+        inset 0 -4px 0px rgba(0, 0, 0, 0.1),
+        0 4px 8px rgba(0, 0, 0, 0.4);
 }
 
-.white.active, .white:active {
+.white.active,
+.white:active {
     background: linear-gradient(to bottom, #f0f0f0 0%, #e0e0e0 100%);
     transform: translateY(4px);
-    box-shadow: inset 0 1px 0px rgba(255,255,255,1),
-                inset 0 -1px 0px rgba(0,0,0,0.1);
+    box-shadow: inset 0 1px 0px rgba(255, 255, 255, 1),
+        inset 0 -1px 0px rgba(0, 0, 0, 0.1);
 }
 
-.black.active, .black:active {
+.black.active,
+.black:active {
     background: linear-gradient(45deg, #111, #333);
     transform: translateY(4px);
-    box-shadow: inset 0 -1px 0px rgba(255,255,255,0.1),
-                inset 0 -1px 0px rgba(0,0,0,0.1);
+    box-shadow: inset 0 -1px 0px rgba(255, 255, 255, 0.1),
+        inset 0 -1px 0px rgba(0, 0, 0, 0.1);
 }
 
 /* Specific Black Key Positioning */
-.key[data-note="C#4"] { left: 14%; }  /* אחרי דו */
-.key[data-note="D#4"] { left:27%; }  /* אחרי רה */
-/* אין מקש שחור אחרי מי */
-.key[data-note="F#4"] { left: 54%; }  /* אחרי פה */
-.key[data-note="G#4"] { left: 67.5%; }  /* אחרי סול */
-.key[data-note="A#4"] { left: 81%; }  /* אחרי לה */
-/* אין מקש שחור אחרי סי */
+.key[data-note="C#4"] {
+    left: 14%;
+}
 
-/* Hebrew Note Labels */
+.key[data-note="D#4"] {
+    left: 27%;
+}
+
+.key[data-note="F#4"] {
+    left: 54%;
+}
+
+.key[data-note="G#4"] {
+    left: 67.5%;
+}
+
+.key[data-note="A#4"] {
+    left: 81%;
+}
+
+
+/* Note Labels */
 .white::after {
-    content: attr(data-hebrew);
+    content: attr(data-note_text);
     position: absolute;
     bottom: 10px;
     font-size: 1.1rem;
@@ -147,7 +168,7 @@
 }
 
 .black::after {
-    content: attr(data-hebrew);
+    content: attr(data-note_text);
     position: absolute;
     bottom: 10px;
     font-size: 0.9rem;
@@ -157,13 +178,22 @@
 
 /* Key Press Animation */
 @keyframes keyPress {
-    0% { transform: translateY(0); }
-    50% { transform: translateY(4px); }
-    100% { transform: translateY(0); }
+    0% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(4px);
+    }
+
+    100% {
+        transform: translateY(0);
+    }
 }
 
 .key.pressed {
     animation: keyPress 0.15s ease;
+
 }
 
 /* Responsive Adjustments */
@@ -171,29 +201,30 @@
     .piano-keys {
         height: 200px;
     }
-    
+
     .black {
         height: 130px;
         width: 28px;
     }
-    
+
     .white::after,
     .black::after {
         font-size: 0.9rem;
     }
 }
 
-/* אפקטים כאשר הכפתור נמצא במצב "active" או כשעוברים עליו עם העכבר */
+
 .game-button:hover {
-    transform: scale(1.1); /* הגדלה קטנה של הכפתור */
+    transform: scale(1.1);
     opacity: 0.8;
 }
 
-/* כאשר הכפתור פעיל, לדוגמה בעת חזרת השחקן על הרצף */
+
 .game-button.active {
     opacity: 1;
-    box-shadow: 0 0 15px rgba(255, 255, 255, 0.6); /* הוספת הילה */
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.6);
 }
+
 .game-status {
     margin-top: 1rem;
     display: flex;
@@ -211,29 +242,30 @@
     display: flex;
     align-items: center;
     gap: 0.5rem;
-    color: var(--primary-color);
+    color: white;
     font-weight: bold;
 }
+
 .best-score-Users {
     display: flex;
     align-items: center;
     gap: 0.5rem;
-    color: gold; 
+    color: gold;
     font-weight: bold;
     cursor: pointer;
-    border-radius: 12px; /* פינות מעוגלות */
-    padding: 10px 20px; /* ריפוד פנימי לנוחות */
-    border: 2px solid transparent; /* גבול שקוף שיתחלף בעת ריחוף */
-    transition: all 0.3s ease; /* אפקט מעבר חלק */
+    border-radius: 12px;
+    padding: 10px 20px;
+    border: 2px solid transparent;
+    transition: all 0.3s ease;
 }
 
 
 
 .best-score-Users:hover {
-    color: #FFFFFF; /* צבע טקסט לבן */
-    background-color: #8f1eff; /* צבע רקע כחול עז */
-    border-color: #FFD700; /* גבול זהב */
-    transform: scale(1.05); /* הגדלה קלה של האלמנט */
+    color: #FFFFFF;
+    background-color: #8f1eff;
+    border-color: #FFD700;
+    transform: scale(1.05);
 }
 
 
@@ -261,11 +293,11 @@
 }
 
 .btn-start:disabled {
-    background: #888; 
+    background: #888;
     color: #ccc;
-    cursor: not-allowed; 
-    opacity: 0.7; 
-    transform: none; 
+    cursor: not-allowed;
+    opacity: 0.7;
+    transform: none;
 }
 
 .game-status {
