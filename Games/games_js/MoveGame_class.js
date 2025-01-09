@@ -14,6 +14,9 @@ class BubbleGame {
         this.bubbleSpeed = 4; // Speed of bubble movement
         this.missedBubbles = 0; // Count of missed bubbles
         this.maxMissedBubbles = 8; // Allowed number of missed bubbles before game over
+        this.sounds = {
+            pop: new Audio('../../Games/sounds/bubbles/Pop Bubble Sound Effect 2022.mp3'),
+        };
     }
 
     init() {
@@ -24,6 +27,15 @@ class BubbleGame {
         this.setupEventListeners(); // Setup event listeners for UI elements
         this.updateStatus('Click Start to begin the game'); // Update game status message
         this.updateGlobalBestScore(); // Update the global best score display
+    }
+
+    
+     playSound(soundType) {
+        const sound = this.sounds[soundType];
+        if (sound) {
+            sound.currentTime = 0;  // מאפס את הצליל להתחלה
+            sound.play().catch(err => console.log('Error playing sound:', err));
+        }
     }
 
     saveBestScore() {
@@ -262,6 +274,8 @@ class BubbleGame {
             this.updateScore(); // Update score display
             this.saveBestScore(); // Save the best score
 
+            this.playSound('pop');
+
             setTimeout(() => {
                 if (bubble.element.parentNode) {
                     bubble.element.parentNode.removeChild(bubble.element); // Remove bubble element
@@ -272,7 +286,7 @@ class BubbleGame {
                 }
             }, 300);
 
-            if (this.score >= this.level * 100) {
+            if (this.score >= this.level * 10) {
                 this.levelUp(); // Level up if score threshold reached
             }
         }
