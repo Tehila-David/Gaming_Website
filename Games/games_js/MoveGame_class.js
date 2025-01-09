@@ -25,15 +25,15 @@ class BubbleGame {
         this.updateScore(); // Update the score display
         this.updateLevel(); // Update the level display
         this.setupEventListeners(); // Setup event listeners for UI elements
-        this.updateStatus('Click Start to begin the game'); // Update game status message
+        this.updateStatus('לחץ על התחל כדי להתחיל במשחק'); // Update game status message
         this.updateGlobalBestScore(); // Update the global best score display
     }
 
     
-     playSound(soundType) {
+    playSound(soundType) {
         const sound = this.sounds[soundType];
         if (sound) {
-            sound.currentTime = 0;  // מאפס את הצליל להתחלה
+            sound.currentTime = 0;  
             sound.play().catch(err => console.log('Error playing sound:', err));
         }
     }
@@ -246,7 +246,7 @@ class BubbleGame {
         this.bubbleSpeed = 2; // Reset bubble speed
         this.missedBubbles = 0; // Reset missed bubble count
 
-        this.updateStatus('Game started! Click the bubbles'); // Update status message
+        this.updateStatus('המשחק התחיל! לחץ על הבועות'); // Update status message
         this.updateScore(); // Update score display
         this.updateLevel(); // Update level display
 
@@ -298,7 +298,7 @@ class BubbleGame {
         this.updateLevel(); // Update level display
         this.maxBubbles = Math.min(this.maxBubbles + 2, 15); // Increase max bubbles
         this.bubbleSpeed += 0.5; // Increase bubble speed
-        this.updateStatus(`Great job! You advanced to level ${this.level}!`); // Update status message
+        this.updateStatus(`כל הכבוד! עלית לרמה ${this.level}!`); // Update status message
     }
 
 
