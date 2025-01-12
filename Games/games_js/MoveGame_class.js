@@ -251,10 +251,6 @@ class BubbleGame {
         this.updateScore(); // Update score display
         this.updateLevel(); // Update level display
 
-        if (this.gameLoop) {
-            clearInterval(this.gameLoop); // Clear any existing loops
-        }
-
         // Main game loop
         this.gameLoop = setInterval(() => {
             if (this.isPlaying) {
