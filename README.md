@@ -1,4 +1,4 @@
-# 🎵 Music Games - Interactive Musical Learning Platform 
+# 🎵 Music Games 
 
 A responsive interactive web application centered around music education through gamification, built with HTML, CSS, and JavaScript.
 
@@ -61,15 +61,36 @@ A responsive interactive web application centered around music education through
 ```
 
 ## 📸 Screenshots
+### LogIn Page 
+<p align="left">
+<img src="https://github.com/Tehila-David/Gaming_Website/blob/main/Screenshots/home_page.png" width="80%">
+</p>
 
-![Piano Game](screenshots/piano_game.jpg)
-*Piano Memory Game with interactive keyboard*
+### Register Page 
+<p align="left">
+<img src="https://github.com/Tehila-David/Gaming_Website/blob/main/Screenshots/register.png" width="80%">
+</p>
 
-![Bubble Game](screenshots/bubble_game.jpg)
-*Music Note Bubble Game - catch falling notes*
+### Games Board Page
+<p align="left">
+<img src="https://github.com/Tehila-David/Gaming_Website/blob/main/Screenshots/game_board_page.png" width="80%">
+</p>
 
-![Leaderboard](screenshots/leaderboard.jpg)
-*Leaderboard showing top players and scores*
+### Piano Game Page
+<p align="left">
+<img src="" width="80%">https://github.com/Tehila-David/Gaming_Website/blob/main/Screenshots/piano_game_page.png
+</p>
+
+### Bubbles Game Page
+<p align="left">
+<img src="https://github.com/Tehila-David/Gaming_Website/blob/main/Screenshots/bubbles_game_page.png" width="80%">
+</p>
+
+### Leaderboard Page
+<p align="left">
+<img src="https://github.com/Tehila-David/Gaming_Website/blob/main/Screenshots/leaderboard_page.png" width="80%">
+</p>
+
 
 
 ## 🎮 Game Modes
