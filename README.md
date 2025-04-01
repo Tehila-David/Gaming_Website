@@ -78,7 +78,7 @@ A responsive interactive web application centered around music education through
 
 ### Piano Game Page
 <p align="left">
-<img src="" width="80%">https://github.com/Tehila-David/Gaming_Website/blob/main/Screenshots/piano_game_page.png
+<img src="https://github.com/Tehila-David/Gaming_Website/blob/main/Screenshots/piano_game_page.png" width="80%">
 </p>
 
 ### Bubbles Game Page
